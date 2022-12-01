@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=3 uid="uid://bep5o4in1vs27"]
+
+[ext_resource type="Shader" uid="uid://bbo1abph4arco" path="res://WaterShader.tres" id="1_wkeku"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n7xyp"]
+sky_top_color = Color(0.141176, 0.294118, 0.490196, 1)
+sky_horizon_color = Color(0.0396, 0.16544, 0.33, 1)
+ground_bottom_color = Color(0.0476, 0.08918, 0.14, 1)
+ground_horizon_color = Color(0.0396, 0.16544, 0.33, 1)
+
+[sub_resource type="Sky" id="Sky_g8eh1"]
+sky_material = SubResource("ProceduralSkyMaterial_n7xyp")
+
+[sub_resource type="Environment" id="Environment_65bmc"]
+background_mode = 2
+sky = SubResource("Sky_g8eh1")
+tonemap_mode = 2
+glow_enabled = true
+glow_bloom = 0.03
+glow_blend_mode = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ss84j"]
+render_priority = 0
+shader = ExtResource("1_wkeku")
+shader_parameter/ColorParameter = null
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_au8eh"]
+material = SubResource("ShaderMaterial_ss84j")
+size = Vector2(10, 10)
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lg47w"]
+albedo_color = Color(0.372549, 0.929412, 0.352941, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_sq2ru"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c78f"]
+albedo_color = Color(0.372549, 0.929412, 0.352941, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ru46r"]
+albedo_color = Color(0.372549, 0.929412, 0.352941, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7hqhw"]
+albedo_color = Color(0.372549, 0.929412, 0.352941, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5r73c"]
+albedo_color = Color(0.372549, 0.929412, 0.352941, 1)
+
+[node name="Root" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000913143, 0.0149341, 0.000696421)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_65bmc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00630689, 0.0171337, -0.00416851)
+mesh = SubResource("PlaneMesh_au8eh")
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="Sphere" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.56415, 0, -1.81092)
+material_override = SubResource("StandardMaterial3D_lg47w")
+mesh = SubResource("SphereMesh_sq2ru")
+skeleton = NodePath("../..")
+
+[node name="Sphere5" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.84025, -0.588337, 1.58267)
+material_override = SubResource("StandardMaterial3D_4c78f")
+mesh = SubResource("SphereMesh_sq2ru")
+skeleton = NodePath("../..")
+
+[node name="Sphere2" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.630877, -0.324667, 1.16556)
+material_override = SubResource("StandardMaterial3D_ru46r")
+mesh = SubResource("SphereMesh_sq2ru")
+skeleton = NodePath("../..")
+
+[node name="Sphere3" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92182, -0.0723834, -3.79153)
+material_override = SubResource("StandardMaterial3D_7hqhw")
+mesh = SubResource("SphereMesh_sq2ru")
+skeleton = NodePath("../..")
+
+[node name="Sphere4" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.65054, -0.627563, 1.14424)
+material_override = SubResource("StandardMaterial3D_5r73c")
+mesh = SubResource("SphereMesh_sq2ru")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.66523, 0, -0.746638, 0, 1, 0, 0.746638, 0, -0.66523, -4.269, 0.54, -3.258)
+fov = 70.9
