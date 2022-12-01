@@ -1,6 +1,7 @@
 ![](./Godot%204%20Water%20Shader/Assets/Water.png)
 
 # Bram's Easy Godot 4 Water Shader
+> Godot 4 Beta 6
 
 I recently put out a few tutorials on Youtube explaining some easy ways to make stylized 3D water in Godot 4, all using visual shaders!
 
